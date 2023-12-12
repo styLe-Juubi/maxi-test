@@ -149,7 +149,7 @@ export class BeneficiaryListComponent implements OnInit, OnDestroy {
 
     if ( error.status === 404 ) {
       
-      this.toastrService.info('No se han encontrado negocios !');
+      this.toastrService.info('No se han encontrado beneficiarios !');
       return;
     }
   }

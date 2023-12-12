@@ -150,7 +150,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
 
     if ( error.status === 404 ) {
       
-      this.toastrService.info('No se han encontrado negocios !');
+      this.toastrService.info('No se han encontrado empleados !');
       return;
     }
   }
