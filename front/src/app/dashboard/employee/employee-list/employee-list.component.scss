@@ -1,0 +1,130 @@
+@import 'src/app/app.component.scss';
+
+div.employee-list {
+    width: 100%;
+
+    div.employee-list-add-btn {
+        width: 250px;
+        height: 50px;
+        margin-bottom: 10px;
+    }
+}
+
+div.employee-list-view {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,.6);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    div.employee-description {
+        width: 1200px;
+        height: 90%;
+        background-color: $white;
+        border-radius: $border-radius;
+        box-shadow: $box-shadow;
+        padding: 25px 35px;
+        box-sizing: border-box;
+
+        h2 {
+            width: 100%;
+            font-size: 20px;
+            font-weight: 900;
+            color: $font-dark;
+
+            i {
+                float: right;
+                cursor: pointer;
+            }
+        }
+
+        ul.employee-description-list {
+            width: 100%;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            justify-content: space-between;
+            padding: 25px 0 5px;
+            border-top: 2px solid $border-light;
+            position: relative;
+
+            h4 {
+                position: absolute;
+                top: -13px;
+                left: 15px;
+                padding: 0 10px;
+                background-color: $white;
+                color: $font-gray;
+                font-weight: 900;
+            }
+            
+            li {
+                width: 33%;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                background-color: $body-color;
+                margin-bottom: 10px;
+                border-radius: $border-radius;
+                border: 1px solid $border-light;
+                padding: 0 10px;
+                box-sizing: border-box;
+                font-size: 14px;
+                letter-spacing: .5px;
+                color: $font-dark;
+                font-weight: 900;
+                color: $purple;
+
+                span { 
+                    font-size: 15px;
+                    margin-left: auto;
+                    color: $font-dark;
+                }
+            }
+        }
+
+        h3.no-beneficiaries {
+            width: 100%;
+            margin-top: 40px;
+            font-weight: 900;
+            background-color: $body-color;
+            color: $font-dark;
+            border-radius: $border-radius;
+            border: 1px solid $border-light;
+            font-size: 25px;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        ul.beneficiaries-container {
+            width: 100%;
+            height: calc( 100% - 330px );
+            position: relative;
+            overflow-y: scroll;
+            padding: 0 40px;
+            box-sizing: border-box;
+
+            &::-webkit-scrollbar {
+                width: 5px;
+                background-color: $border-light;
+                color: $purple;
+              }
+            
+              &::-webkit-scrollbar-thumb {
+                background: $purple;
+              }
+              
+              &::-webkit-scrollbar-thumb:hover {
+                background: $purple-light;
+              }
+        }
+    }
+
+}

@@ -1,0 +1,189 @@
+@import '../../../../app.component.scss';
+
+div.app-select {
+    width: 200px;
+    height: 36px;
+    min-width: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    position: relative; 
+    cursor: pointer;
+
+    div.app-select-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        border: 0;
+        border: 1px solid $border-light;
+        border-radius: $border-radius;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: .2px;
+        transition: $transition;
+        box-sizing: border-box;
+
+        span {
+            width: 90%;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        i {
+            margin-left: auto;
+            font-size: 16px;
+            color: $purple;
+        }
+    }
+
+    div.app-select-list-wrap {
+        min-width: 103% !important;
+        overflow: hidden;
+        margin: 5px auto 0 -1.5%;
+        max-height: 0;
+        position: relative;
+        z-index: 1;
+
+        ul.app-select-list {
+            width: 97%;
+            max-height: 200px;
+            margin: 5px auto;
+            border: 1px solid $border-light;
+            border-radius: $border-radius;
+            list-style: none;
+            overflow-y: scroll;
+            user-select: none;
+    
+            .app-select-list-item {
+                width: 100%;
+                font-size: 13px;
+                font-weight: 600;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                padding: 0 10px;
+                box-sizing: border-box;
+                border-bottom: 1px solid $border-light;
+                transition: $transition;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+    
+                span {
+                    width: 100%;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                }
+    
+                &:hover {
+                    color: $font-dark;
+                }
+            }
+    
+            
+            &::-webkit-scrollbar {
+                width: 3px;
+            }
+    
+            &::-webkit-scrollbar-track {
+                background: $body-color;
+            }
+            
+            &::-webkit-scrollbar-thumb {
+                background: $purple;
+                border-radius: 10px
+            }
+            
+            &::-webkit-scrollbar-thumb:hover {
+                background: $purple-light;
+            }
+        }
+    }
+}
+
+.app-select-elevation {
+    div.app-select-placeholder {
+        border: 0 !important;
+        box-shadow: $box-shadow;
+    }
+    div.app-select-list-wrap {
+        ul.app-select-list { 
+            border: 0 !important;
+            box-shadow: $box-shadow;
+        }
+    }
+}
+
+.app-select-fit {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.app-select-white {
+    div.app-select-placeholder {
+        background-color: $white;
+        color: $font-gray !important;
+
+        span.app-select-placeholder-selected-value {
+            color: $font-dark !important;
+        }
+    }
+    div.app-select-list-wrap ul.app-select-list {
+        background-color: $white;
+        .app-select-list-item {
+            color: $font-gray;
+            &:hover {
+                color: $font-dark !important;
+            }
+        }
+    }
+}
+
+.app-select-dark {
+    div.app-select-placeholder {
+        background-color: $dark;
+        color: $font-gray !important;
+
+        span.app-select-placeholder-selected-value {
+            color: $font-white !important;
+        }
+    }
+    div.app-select-list-wrap ul.app-select-list {
+        background-color: $dark;
+        .app-select-list-item {
+            color: $font-gray;
+            &:hover {
+                color: $font-white !important;
+            }
+        }
+    }
+}
+
+.app-select-primary {
+    div.app-select-placeholder {
+        background-color: $purple;
+        color: $font-white-light;
+        span.app-select-placeholder-selected-value {
+            color: $font-white !important;
+        }
+        i {
+            color: $font-white !important;
+        }
+    }
+    div.app-select-list-wrap ul.app-select-list {
+        background-color: $purple;
+        .app-select-list-item {
+            color: $font-white-light;
+            &:hover {
+                color: $font-white !important;
+            }
+        }
+        &::-webkit-scrollbar-track {
+            background: $purple-light !important;
+        }
+    }
+}

@@ -1,0 +1,240 @@
+@import '../../app.component.scss';
+
+.login {
+    width: 100%;
+    height: 100vh;
+    background-color: $body-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../../../assets/login-background2.jpg');
+
+    .auth-form {
+        width: 700px;
+        margin-top: 25px;
+        background-color: $white;
+        box-shadow: $box-shadow;
+        border-radius: $border-radius;
+        display: flex;
+        flex-wrap: wrap;
+        transition: $transition;
+    
+        .auth-form-section {
+            flex: 0 0 100%;
+            height: 600px;
+            background-color: $white;
+            position: relative;
+            border-radius: $border-radius;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            transition: $transition;
+    
+            &:nth-child(2) {
+                border-radius: $border-radius;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                transition: $transition;
+            }
+            
+    
+            .auth-form-img {
+                width: 100%;
+                height: 100%;
+                position: relative;
+                object-fit: cover;
+                z-index: 1;
+            }
+    
+            .auth-form-section-overimg {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 2;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: rgba(0,0,0,.3);
+    
+                .auth-form-section-overimg-text {
+                    width: 340px;
+                    background-color: $white;
+                    border-radius: $border-radius;
+                    z-index: 3;
+                    padding: 30px 20px 35px;
+                    box-shadow: $box-shadow;
+                    transition: $transition;
+    
+                    h5 {
+                        width: 100%;
+                        margin: 0;
+                        color: $purple;
+                        font-size: 40px;
+                        font-weight: bold;
+                        font-family: $font-family-title;
+                        letter-spacing: 1px;
+                        text-align: center;
+                        transition: $transition;
+                    }
+    
+                    p {
+                        width: 100%;
+                        font-size: 13px;
+                        text-transform: uppercase;
+                        letter-spacing: .5px;
+                        margin-top: 10px;
+                        text-align: center;
+                        font-weight: bold;
+                        color: $font-gray;
+                        transition: $transition;
+    
+                        span {
+                            float: left;
+    
+                            &:nth-child(2) {
+                                float: right;
+                            }
+                        }
+                    }
+    
+                    ul {
+                        width: 100%;
+                        margin-top: 15px;
+                        padding: 0;
+                        list-style: none;
+                        border-radius: $border-radius;
+                        display: flex;
+                        flex-wrap: wrap;
+                        transition: $transition;
+    
+                        li {
+                            display: flex;
+                            flex-wrap: wrap;
+                            align-items: center;
+                            width: 100%;
+                            padding: 3px 10px;
+                            margin-bottom: 5px;
+                            font-size: 12px;
+                            font-weight: bold;
+                            color: $purple;
+                            letter-spacing: .5px;
+                            transition: $transition;
+    
+                            i {
+                                margin-right: 10px;
+                            }
+    
+                            span {
+                                color: $font-dark;
+                                flex: 1;
+                                transition: $transition;
+                            }
+                        }
+                    }
+                }
+            }
+    
+            .auth-form-center {
+                width: 300px;
+    
+                .auth-form-div-logo {
+                    width: 100%;
+                    text-align: center;
+                    margin-bottom: 5px;
+    
+                    img {
+                        flex: 0 0 65%;
+                        width: 65%;
+                    }
+    
+                    h2 {
+                        width: 100%;
+                        font-size: 30px;
+                        font-family: $font-family-title;
+                        transition: $transition;
+                    }
+                }
+    
+                .auth-form-div {
+                    width: 100%;
+        
+                    .auth-form-div-field {
+                        width: 100%;
+                        display: flex;
+                        flex-wrap: wrap;
+        
+                        .auth-form-div-input {
+                            width: 100%;
+                            height: 45px;
+                        }
+    
+                        .phone-number {
+                            width: 100%;
+                            display: flex;
+                            justify-content: space-between;
+    
+                            .country-code {
+                                width: 65px;
+                            }
+                        }
+                    }
+        
+                    .auth-form-div-btn {
+                        width: 100%;
+                        height: 45px;
+                        margin-top: 20px;
+                    }
+        
+                   
+                }
+            }
+            
+        }
+    }
+    
+}
+
+
+p {
+    width: 100%;
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 10px;
+    letter-spacing: .2px;
+    user-select: none;
+    margin-bottom: 6px;
+    color: $font-dark;
+    transition: $transition;
+
+    a {
+        float: right;
+        text-decoration: underline;
+        color: $purple;
+        cursor: pointer;
+        transition: $transition;
+    }
+}
+  
+.register-type {
+    padding: 0;
+    list-style: none;
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+
+    p {
+        margin-bottom: 7px;
+    }
+
+    .register-type-btn {
+        flex: 0 0 48%;
+    }
+}

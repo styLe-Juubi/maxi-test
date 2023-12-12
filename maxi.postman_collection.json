@@ -1,0 +1,545 @@
+{
+	"info": {
+		"_postman_id": "b364c347-db96-4bcb-a3f8-23ae09d85c29",
+		"name": "maxi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30126389"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "sign in",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"DevPass#\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{version}}/auth/sign-in",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"auth",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Status",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"auth4@gmail.com\",\r\n    \"password\": \"ElJuubi5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{version}}/auth/check-status",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"auth",
+								"check-status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "seed",
+			"item": [
+				{
+					"name": "Execute Seed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/{{version}}/seed",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"seed"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "employee",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Gael\",\r\n    \"surname\": \"Catellon\",\r\n    \"birthdate\": \"16/08/1996\",\r\n    \"curp\": \"JASNDA2831KJS\",\r\n    \"ssn\": \"124134\",\r\n    \"phone\": 6691438664,\r\n    \"nationality\": \"Mexicana\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{version}}/employee",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"employee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/{{version}}/employee",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"employee"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "as",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "dos",
+									"disabled": true
+								},
+								{
+									"key": "surname",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "online",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find One",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/{{version}}/employee/:employeeId",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"employee",
+								":employeeId"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "65787a76294011c65bd10c1f"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Actualizado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{version}}/employee/:employeeId",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"employee",
+								":employeeId"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "6576b36b84ccb07522b8ad05"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete (Inactive)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/{{version}}/employee/:employeeId",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"employee",
+								":employeeId"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "6576b36b84ccb07522b8ad05"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "beneficiary",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"De Gael Tres\",\r\n    \"surname\": \"Apellido Empleado prueba\",\r\n    \"birthdate\": \"16/08/1996\",\r\n    \"curp\": \"JASNDA2831KJS\",\r\n    \"ssn\": \"124134\",\r\n    \"phone\": 6691438664,\r\n    \"nationality\": \"Mexicana\",\r\n    \"percentage\": 10,\r\n    \"employee\": \"65787a76294011c65bd10c1f\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{version}}/beneficiary",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"beneficiary"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/{{version}}/beneficiary",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"beneficiary"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "as",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "dos",
+									"disabled": true
+								},
+								{
+									"key": "surname",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "online",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "employee",
+									"value": "65776990279f2db410f7d40c",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find One",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/{{version}}/beneficiary/:beneficiaryId",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"beneficiary",
+								":beneficiaryId"
+							],
+							"variable": [
+								{
+									"key": "beneficiaryId",
+									"value": "6577699c279f2db410f7d42c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"percentage\": 80\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{version}}/beneficiary/:beneficiaryId",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"beneficiary",
+								":beneficiaryId"
+							],
+							"variable": [
+								{
+									"key": "beneficiaryId",
+									"value": "65779746dbec4fed1ae672de"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete (Inactive)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/{{version}}/beneficiary/:beneficiaryId",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"beneficiary",
+								":beneficiaryId"
+							],
+							"variable": [
+								{
+									"key": "beneficiaryId",
+									"value": "65779758dbec4fed1ae672e7"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,140 @@
+<div class="create-employee fadeInAnimation">
+    <h2>Agregar Empleado</h2>
+
+    <form
+        [formGroup]="employeeForm"
+        (ngSubmit)="sendForm();"
+    >   
+        <div class="form-field">
+            <p>Nombre:</p>
+            <app-input
+                [elevation]=false
+                [fit]=true
+                color="white"
+                class="input-field"
+                icon="fa-solid fa-user"
+
+                [parentForm]="employeeForm"
+                fieldName="name"
+                formControlName="name"
+                type="text"
+                placeholder="Nombres del empleado"
+            ></app-input>
+        </div>
+
+        <div class="form-field">
+            <p>Apellido:</p>
+            <app-input
+                [elevation]=false
+                [fit]=true
+                color="white"
+                class="input-field"
+                icon="fa-solid fa-user"
+
+                [parentForm]="employeeForm"
+                fieldName="surname"
+                formControlName="surname"
+                type="text"
+                placeholder="Apellidos del empleado"
+            ></app-input>
+        </div>
+
+        <div class="form-field">
+            <p>Fecha de Nacimiento:</p>
+            <app-input
+                [elevation]=false
+                [fit]=true
+                color="white"
+                class="input-field"
+                icon="fa-solid fa-calendar"
+
+                [parentForm]="employeeForm"
+                fieldName="birthdate"
+                formControlName="birthdate"
+                type="text"
+                placeholder="dd / mm / yy"
+            ></app-input>
+        </div>
+
+        <div class="form-field">
+            <p>CURP:</p>
+            <app-input
+                [elevation]=false
+                [fit]=true
+                color="white"
+                class="input-field"
+                icon="fa-solid fa-file"
+
+                [parentForm]="employeeForm"
+                fieldName="curp"
+                formControlName="curp"
+                type="text"
+                placeholder="XEXX010101HNEXXXA4"
+            ></app-input>
+        </div>
+
+        <div class="form-field">
+            <p>SSN:</p>
+            <app-input
+                [elevation]=false
+                [fit]=true
+                color="white"
+                class="input-field"
+                icon="fa-solid fa-file"
+
+                [parentForm]="employeeForm"
+                fieldName="ssn"
+                formControlName="ssn"
+                type="text"
+                placeholder="SSN"
+            ></app-input>
+        </div>
+
+        <div class="form-field">
+            <p>Telefono:</p>
+            <app-input
+                [elevation]=false
+                [fit]=true
+                color="white"
+                class="input-field"
+                icon="fa-solid fa-phone"
+
+                [parentForm]="employeeForm"
+                fieldName="phone"
+                formControlName="phone"
+                type="number"
+                placeholder="+52 6699885533"
+            ></app-input>
+        </div>
+
+        <div class="form-field">
+            <p>Nacionalidad:</p>
+            <div class="form-field-wrap">
+                <app-select
+                    [elevation]=false
+                    [fit]=true
+                    color="white"
+                    class="input-field"
+                    icon="fa-solid fa-file"
+
+                    [selectOptions]="nationalities"
+                    [parentForm]="employeeForm"
+                    fieldName="nationality"
+                    formControlName="nationality"
+                    type="text"
+                    placeholder="MX"
+                ></app-select>
+            </div>
+        </div>
+
+        <app-button
+            [elevation]=true
+            [fit]=true
+            class="create-employee-btn"
+
+            color="primary"
+            text="Agregar Empleado"
+            [disabled]="employeeForm.invalid"
+        ></app-button>
+    </form>
+</div>

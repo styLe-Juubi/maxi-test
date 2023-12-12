@@ -1,0 +1,14 @@
+@import '../app.component.scss';
+
+.dashboard {
+    width: 100%;
+    min-height: calc( 100vh );
+    background-color: $body-color;
+    position: relative;
+    padding-bottom: 190px;
+
+    .dashboard-content {
+        width: 90%;
+        margin: 15px auto 0;
+    }
+}

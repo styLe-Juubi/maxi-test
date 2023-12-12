@@ -1,0 +1,64 @@
+<aside class="sidebar" rol="sidebar" #sidebar>
+        <app-button 
+            *ngrxLet="activeSidebar$ as activeSidebar"
+            class="toggle-sidebar"
+            (click)="toggleSidebar( !activeSidebar );"
+            [elevation]=true
+            [fit]=true
+            color="white"
+            icon="fa-solid fa-bars"
+        ></app-button>
+
+    <div 
+        routerLink="/dashboard"
+        class="sidebar-logo"
+    >
+        <img 
+            class="sidebar-logo-img"
+            src="assets/logo.png" 
+            alt="logo.png"
+        >
+        <p class="sidebar-logo-eslogan">Maxi transfers</p>
+    </div>
+
+    <div class="sidebar-logo-list-divider"></div>
+
+    <div class="sidebar-rest-without-logo">
+        <div class="sidebar-nav-menu">
+            <ul class="sidebar-list sidebar-list-main-nav">
+                <h3>
+                    Empleados
+                </h3>
+                <li anim="ripple" (click)="toggleSidebar( false );" routerLink="/dashboard/employee/create">
+                    <a>
+                        Agregar Empleado
+                        <i class="fa-solid fa-caret-right"></i>
+                    </a>
+                </li>
+                <li anim="ripple" (click)="toggleSidebar( false );" routerLink="/dashboard/employee/list">
+                    <a>
+                        Lista de Empleados
+                        <i class="fa-solid fa-caret-right"></i>
+                    </a>
+                </li>
+                <h3>
+                    Beneficiarios
+                </h3>
+                <li anim="ripple" (click)="toggleSidebar( false );" routerLink="/dashboard/beneficiary/create">
+                    <a>
+                        Agregar Beneficiario
+                        <i class="fa-solid fa-caret-right"></i>
+                    </a>
+                </li>
+                <li anim="ripple" (click)="toggleSidebar( false );" routerLink="/dashboard/beneficiary/list">
+                    <a>
+                        Lista de Beneficiarios
+                        <i class="fa-solid fa-caret-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</aside>
+

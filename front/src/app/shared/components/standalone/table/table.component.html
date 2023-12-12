@@ -1,0 +1,453 @@
+<div 
+    #table
+    class="table"
+    [ngClass]="{
+        'table-elevation': elevation,
+        'table-color-primary': color === 'primary',
+        'table-color-white': color === 'white',
+        'table-color-dark': color === 'dark',
+    }"
+>
+
+    <div class="table-title">
+        <h3 class="table-body-title">{{ title }}</h3>
+    </div>
+
+    <!-- Horizontal Table -->
+    <ng-container *ngIf="align === 'horizontal'">
+        <div class="horizontal-table-body drag-scroll">
+            <div class="data-table">
+                <div class="horizontal-table-row-header">
+                    <div class="horizontal-table-cell" *ngFor="let column of columns">
+                        {{ column.value }}
+                    </div>
+                </div>
+                  
+                <ng-container *ngIf="items && items.length > 0 && !loading; else elseBlock">
+                    <div class="horizontal-table-row"  *ngFor="let item of items">
+                        <ng-container *ngFor="let column of columns">
+                            <div 
+                                *ngIf="column.type === 'id'"
+                                class="horizontal-table-cell size-id-data" 
+                                data-title="{{ column.value }}" 
+                            >
+                                {{ item[ column.apiValue ] | parseMongoId }}
+                            </div>
+    
+                            <div 
+                                *ngIf="column.type === 'string' || column.type === 'date'"
+                                class="horizontal-table-cell"
+                                [ngClass]="{
+                                    'size-large-data': column.size === 'large-data',
+                                    'size-medium-data': column.size === 'medium-data',
+                                }"
+                                data-title="{{ column.value }}" 
+                            >   
+                                <ng-container *ngIf="column.apiValue === 'category'; else elseBlock">
+                                    {{ item[ column.apiValue ] | parseCategory }}
+                                </ng-container>
+                                <ng-template #elseBlock>
+                                    <ng-container *ngIf="column.type !== 'date'">
+                                        {{ item[ column.apiValue ] }}
+                                    </ng-container>
+                                    <ng-container *ngIf="column.type === 'date'">
+                                        {{ item[ column.apiValue ] | date }}
+                                    </ng-container>
+                                </ng-template>
+                            </div>
+    
+                            <div 
+                                *ngIf="column.type === 'square-image' || column.type === 'rectangular-image'"
+                                class="horizontal-table-cell"
+                            >   
+                                <img 
+                                    (click)="toggleImage( true, item[ column.apiValue ][0] );"
+                                    class="skeleton"
+                                    [ngClass]="{
+                                        'cell-square-image': column.type === 'square-image',
+                                        'cell-rectangular-image': column.type === 'rectangular-image',
+                                    }"
+                                    [src]="item[ column.apiValue ][0]"
+                                />
+                            </div>
+    
+                            <div class="horizontal-table-cell" data-title="{{ item[ column.value ]}}" *ngIf="column.type === 'boolean'">
+    
+                                <i class="fa-solid fa-circle-check check-icon" *ngIf="item[ column.apiValue ]"></i>
+                                <i class="fa-solid fa-circle-xmark x-icon" *ngIf="!item[ column.apiValue ]"></i>
+    
+                            </div>
+    
+                            <div class="horizontal-table-cell" data-title="{{ item[ column.value ]}}" *ngIf="column.type === 'action'">
+                                <i class="fa-solid fa-eye watch-icon" (click)="sendAction( item._id, 'view' );"></i>
+                                <i class="fas fa-edit edit-icon" (click)="sendAction( item._id, 'update' );"></i>
+                                <i class="fas fa-trash trash-icon" (click)="sendAction( item._id, 'delete' );"></i>
+                            </div>
+                        </ng-container>
+                    </div>
+                </ng-container>
+                <ng-template #elseBlock>
+                    <div class="horizontal-table-row skeleton" *ngFor="let blank of blanks">
+                        <div 
+                            *ngFor="let column of columns" 
+                            class="horizontal-table-cell blank-cell"
+                        ></div>
+                    </div>
+                    <div class="horizontal-blank-data-message">
+                        <h3>Se estan cargando los elementos !</h3>
+                    </div>
+                </ng-template>
+                  
+            </div>
+        </div>
+    </ng-container>
+
+    <!-- Vertical Table -->
+    <ng-container *ngIf="align === 'vertical'">
+        <div class="vertical-table-body drag-scroll" *ngIf="columns && items">
+
+            <ul class="table-header-titles">
+                <li *ngFor="let column of columns">
+                    {{ column.value }}   
+                    <i class="fa-solid fa-circle"></i>
+                </li>
+            </ul>
+
+            <ng-container *ngIf="items && items.length > 0 && !loading; else elseBlock">
+                <ul class="table-columns" *ngFor="let item of items">
+                    <ng-container *ngFor="let column of columns">
+                        <li *ngIf="column.type === 'id'">
+                            {{ item[ column.apiValue ] | parseMongoId }}
+                        </li>
+    
+                        <li *ngIf="column.type === 'string' || column.type === 'date'">
+                            <ng-container *ngIf="column.apiValue === 'category'; else elseBlock">
+                                {{ item[ column.apiValue ] | parseCategory }}
+                            </ng-container>
+                            <ng-template #elseBlock>
+                                <ng-container *ngIf="column.type !== 'date'">
+                                    {{ item[ column.apiValue ] }}
+                                </ng-container>
+                                <ng-container *ngIf="column.type === 'date'">
+                                    {{ item[ column.apiValue ] | date }}
+                                </ng-container>
+                            </ng-template>
+                        </li>
+    
+                        <li 
+                            *ngIf="column.type === 'square-image' || column.type === 'rectangular-image'"
+                            class="horizontal-table-cell"
+                        >   
+                            <img 
+                                (click)="toggleImage( true, item[ column.apiValue ] )"
+                                class="skeleton"
+                                [ngClass]="{
+                                    'cell-square-image': column.type === 'square-image',
+                                    'cell-rectangular-image': column.type === 'rectangular-image',
+                                }"
+                                [src]="item[ column.apiValue ][0]"
+                            />
+                        </li>
+    
+                        <li *ngIf="column.type === 'boolean'">
+                            <i class="fa-solid fa-circle-check check-icon" *ngIf="item[ column.apiValue ]"></i>
+                            <i class="fa-solid fa-circle-xmark x-icon" *ngIf="!item[ column.apiValue ]"></i>
+                        </li>
+    
+                        <li *ngIf="column.type === 'action'">
+                            <i class="fa-solid fa-eye watch-icon" (click)="sendAction( item._id, 'view' );"></i>
+                            <i class="fas fa-edit edit-icon" (click)="sendAction( item._id, 'update' );"></i>
+                            <i class="fas fa-trash trash-icon" (click)="sendAction( item._id, 'delete' );"></i>
+                        </li>
+                    </ng-container>
+                </ul>
+            </ng-container>
+            <ng-template #elseBlock>
+                <div class="vertical-blank-data-message skeleton">
+                    <h3>Se estan cargando los elementos !</h3>
+                </div>
+            </ng-template>
+            
+    
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="pagination; else elseBlock">
+        <div class="table-footer">
+            
+            <!-- Current Page -->
+            <div class="table-current-page">
+                <app-button
+                    [elevation]="elevation"
+                    [fit]="true"
+                    [color]="color"
+                    
+                    [text]="'Pagina ' + pagination.page"
+                    icon="fa-regular fa-file"
+                    type="button"
+                ></app-button>
+            </div>
+    
+            <div class="table-pagination">
+    
+                <!-- Pagination Limit -->
+                <form class="table-pagination-limit" [formGroup]="limitForm">
+    
+                    <h5>
+                        Documentos por pagina: 
+                    </h5>
+                    <div class="table-pagination-select">
+                        <app-select
+                            class="table-pagination-select"
+                            [elevation]="elevation"
+                            [fit]="true"
+                            [color]="color"
+    
+                            [selectOptions]="limitOptions"
+                            [parentForm]="limitForm"
+                            fieldName="limit"
+                            formControlName="limit"
+                            placeholder="{{ pagination.limit.toString() }}"
+                        ></app-select>
+                    </div>
+                    
+                </form>
+    
+                <!-- Pagination -->
+                <ul class="table-pagination-arrows">
+                    <li>
+                        <app-button
+                            (click)="changePage( 'first' );"
+                            [elevation]="elevation"
+                            [fit]="true"
+                            [color]="color"
+    
+                            icon="fa-solid fa-angles-left"
+                            type="button"
+                        ></app-button>
+                    </li>
+                    <li>
+                        <app-button
+                            (click)="changePage( 'prev' );"
+                            [elevation]="elevation"
+                            [fit]="true"
+                            [color]="color"
+    
+                            icon="fa-solid fa-caret-left"
+                            type="button"
+                        ></app-button>
+                    </li>
+    
+                    <li class="table-pagination-page-number">
+                        <app-button
+                            (click)="changePage( undefined, pagination.page );"
+                            [elevation]="elevation"
+                            [fit]="true"
+                            [color]="color"
+    
+                            text="{{ pagination.page }}"
+                            type="button"
+                        ></app-button>
+                    </li>
+    
+                    <li>
+                        <app-button
+                            [elevation]="elevation"
+                            [fit]="true"
+                            [color]="color"
+    
+                            text="/"
+                            type="button"
+                        ></app-button>
+                    </li>
+    
+                    <li class="table-pagination-page-number">
+                        <app-button
+                            (click)="changePage( undefined, pagination.totalPages );"
+                            [elevation]="elevation"
+                            [fit]="true"
+                            [color]="color"
+    
+                            text="{{ pagination.totalPages }}"
+                            type="button"
+                        ></app-button>
+                    </li>
+    
+                    <li>
+                        <app-button
+                            (click)="changePage( 'next' );"
+                            [elevation]="elevation"
+                            [fit]="true"
+                            [color]="color"
+    
+                            icon="fa-solid fa-caret-right"
+                            type="button"
+                        ></app-button>
+                    </li>
+                    <li>
+                        <app-button
+                            (click)="changePage( 'last' );"
+                            [elevation]="elevation"
+                            [fit]="true"
+                            [color]="color"
+    
+                            icon="fa-solid fa-angles-right"
+                            type="button"
+                        ></app-button>
+                    </li>
+    
+                    <li class="table-total-docs">
+                        <app-button
+                            [elevation]="elevation"
+                            [fit]="true"
+                            [color]="color"
+    
+                            text="{{ '(' + pagination.totalDocs + ')'}}"
+                            type="button"
+                        ></app-button>
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #elseBlock>
+        <div class="table-footer">
+            <!-- Current Page -->
+            <div class="table-current-page">
+                <app-button
+                    [elevation]="elevation"
+                    [fit]="true"
+                    [color]="color"
+                    
+                    text="Pagina 1"
+                    icon="fa-regular fa-file"
+                    type="button"
+                ></app-button>
+            </div>
+            <div class="table-pagination">
+    
+                <!-- Pagination Limit -->
+                <form class="table-pagination-limit">
+    
+                    <h5>
+                        Documentos por pagina: 
+                    </h5>
+                    <div class="table-pagination-select">
+                        <app-button
+                            [elevation]="elevation"
+                            [fit]="true"
+                            [color]="color"
+
+                            icon="fa-solid fa-sitemap"
+                            type="button"
+                        ></app-button>
+                    </div>
+                    
+                </form>
+    
+                <!-- Pagination -->
+                <ul class="table-pagination-arrows">
+                    <li>
+                        <app-button
+                            [elevation]="elevation"
+                            [fit]="true"
+                            [color]="color"
+    
+                            icon="fa-solid fa-angles-left"
+                            type="button"
+                        ></app-button>
+                    </li>
+                    <li>
+                        <app-button
+                            [elevation]="elevation"
+                            [fit]="true"
+                            [color]="color"
+    
+                            icon="fa-solid fa-caret-left"
+                            type="button"
+                        ></app-button>
+                    </li>
+    
+                    <li class="table-pagination-page-number">
+                        <app-button
+                            [elevation]="elevation"
+                            [fit]="true"
+                            [color]="color"
+    
+                            text="1"
+                            type="button"
+                        ></app-button>
+                    </li>
+    
+                    <li>
+                        <app-button
+                            [elevation]="elevation"
+                            [fit]="true"
+                            [color]="color"
+    
+                            text="/"
+                            type="button"
+                        ></app-button>
+                    </li>
+    
+                    <li class="table-pagination-page-number">
+                        <app-button
+                            [elevation]="elevation"
+                            [fit]="true"
+                            [color]="color"
+    
+                            text="1"
+                            type="button"
+                        ></app-button>
+                    </li>
+    
+                    <li>
+                        <app-button
+                            [elevation]="elevation"
+                            [fit]="true"
+                            [color]="color"
+    
+                            icon="fa-solid fa-caret-right"
+                            type="button"
+                        ></app-button>
+                    </li>
+                    <li>
+                        <app-button
+                            [elevation]="elevation"
+                            [fit]="true"
+                            [color]="color"
+    
+                            icon="fa-solid fa-angles-right"
+                            type="button"
+                        ></app-button>
+                    </li>
+    
+                    <li class="table-total-docs">
+                        <app-button
+                            [elevation]="elevation"
+                            [fit]="true"
+                            [color]="color"
+    
+                            text="0"
+                            type="button"
+                        ></app-button>
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+    </ng-template>
+    
+
+</div>
+
+<div class="table-image-modal" #modalImage active="false">
+    <div class="table-image-modal-close" (click)="toggleImage( false );">
+        <i class="fa-solid fa-xmark"></i>
+    </div>
+    <img 
+        [src]="imageModalSrc"
+        alt="modal-image.png"
+    />
+</div>

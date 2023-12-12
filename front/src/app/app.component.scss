@@ -1,0 +1,13 @@
+@import './shared/scss/custom-styles.scss';
+
+.app-component {
+    width: 100%;
+    min-height: calc( 100vh );
+    background-color: $body-color;
+    position: relative;
+
+    .app-component-content {
+        width: 1000px;
+        margin: 10px auto 0;
+    }
+}

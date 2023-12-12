@@ -1,0 +1,36 @@
+<button 
+    anim="ripple" 
+    type="{{type}}"
+    class="app-button"
+    [ngClass]="{
+        'app-button-primary': color === 'primary',
+        'app-button-dark': color === 'dark',
+        'app-button-white': color === 'white',
+        'app-button-shadow': elevation,
+        'app-button-fit': fit,
+        'app-button-only-icon':
+            icon.trim() !== '' && text.trim() === '',
+        'app-button-text-icon': 
+            icon.trim() !== '' && text.trim() !== '',
+        'app-button-disabled': disabled
+    }"
+    [disabled]=disabled
+>
+    <ng-container *ngIf="text.trim() !== ''">
+        <span 
+            [ngStyle]="{
+                'font-size': size + 'px',
+                'font-weight': bold && 'bold',
+            }"     
+        >
+            {{ text }}
+        </span>
+    </ng-container>
+    <ng-container *ngIf="icon.trim() !== ''">
+        <i 
+            [ngStyle]="{'font-size': size + 'px'}" 
+            class="{{ icon }}"
+        >
+        </i>
+    </ng-container>
+</button>

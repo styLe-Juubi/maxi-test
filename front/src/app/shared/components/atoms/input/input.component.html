@@ -1,0 +1,97 @@
+<div 
+    class="app-input-container"
+    [ngClass]="{
+        'app-input-elevation': elevation,
+        'app-input-fit': fit,
+        'app-input-with-icon': icon.trim() !== '',
+        'app-input-dark': color === 'dark',
+        'app-input-white': color === 'white',
+        'app-input-primary': color === 'primary',
+    }"
+>
+    <input
+        class="app-input"
+        [type]="type"
+        [placeholder]="placeholder"
+        [value]="value"
+        [disabled]="isDisabled"
+        (input)="onChange( $event )"
+        (blur)="touched()"
+        spellcheck="false"
+    />
+
+    <div 
+        class="app-input-icon" 
+        *ngIf="type !== 'password' && type !== 'show-password-text'"
+    >
+        <ng-container 
+            *ngIf="
+                (formField!.invalid && !formField!.dirty) ||
+                formField.value.length === 0
+            "
+        >
+            <i 
+                class="{{ icon }}"
+                [ngClass]="{
+                    'app-input-invalid-field-custom-icon': formField!.invalid && 
+                    formField!.dirty
+                }"
+            ></i>
+        </ng-container>
+        
+        <ng-container 
+            *ngIf="
+                formField!.invalid && 
+                formField!.dirty &&
+                formField!.value.length > 0
+            "
+        >
+            <i class="
+                app-input-icon-invalid 
+                fa-solid fa-circle-xmark
+            "></i>
+        </ng-container>
+
+        <ng-container 
+            *ngIf="formField!.valid && formField.value.length > 0"
+        >
+            <i class="
+                app-input-icon-valid 
+                fa-solid fa-circle-check
+            "></i>
+        </ng-container>
+    </div>
+    
+    <div 
+        class="app-input-show-password" 
+        *ngIf="
+            type === 'password' || 
+            type === 'show-password-text'
+        "
+    >   
+        <ng-container 
+            *ngIf="formField!.invalid && formField!.dirty"
+        >
+            <i class="
+                app-input-icon-invalid 
+                fa-solid fa-circle-xmark
+            "></i>
+        </ng-container>
+
+        <ng-container 
+            *ngIf="formField!.valid"
+        >
+            <i class="
+                app-input-icon-valid 
+                fa-solid fa-circle-check
+            "></i>
+        </ng-container>
+        
+        <i (click)="togglePasswordVisible();"
+            [ngClass]="defaultType === 'password' && type === 'show-password-text' ? 
+            'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"
+        ></i>
+    </div>
+
+    
+</div>

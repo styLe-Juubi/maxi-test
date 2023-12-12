@@ -1,0 +1,53 @@
+<div 
+    (click)="$event.stopPropagation();"
+    class="app-select"
+    [ngClass]="{
+        'app-select-elevation': elevation,
+        'app-select-fit': fit,
+        'app-select-dark': color === 'dark',
+        'app-select-white': color === 'white',
+        'app-select-primary': color === 'primary',
+    }"
+>
+    <div 
+        
+        (click)="toggleList( !activeList );"
+        class="app-select-placeholder"
+    >
+        <span *ngIf="!viewSelected">
+            {{ placeholder }}
+        </span>
+        <span 
+            *ngIf="viewSelected"
+            class="app-select-placeholder-selected-value"
+        >
+            {{ viewSelected }}
+        </span>
+        <ng-container 
+            *ngIf="
+                formField!.invalid && 
+                formField!.dirty
+            "
+        >
+            <i class="
+                app-input-icon-invalid 
+                fa-solid fa-circle-xmark
+            "></i>
+        </ng-container>
+        <i
+            class="fa-solid fa-caret-down"
+            #selectListIcon
+        ></i>
+    </div>
+    <div class="app-select-list-wrap" #selectList>
+        <ul class="app-select-list">
+            <li 
+                *ngFor="let option of selectOptions"
+                class="app-select-list-item"
+                (click)="setValue( option );"
+            >
+                <span>{{ option.name }}</span>
+            </li>
+        </ul>
+    </div>
+</div>

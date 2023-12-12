@@ -1,0 +1,30 @@
+<div class="beneficiary-list fadeInAnimation">
+    <div class="beneficiary-list-add-btn">
+        <app-button
+            routerLink="/dashboard/beneficiary/create"
+            [elevation]="true"
+            color="primary"
+            [fit]="true"
+
+            text="Agregar Beneficiario"
+            icon="fa-solid fa-circle-plus"
+            size="15"
+        ></app-button>
+    </div>
+    <ng-container>
+        <app-table
+            [elevation]="true"
+            color="white"
+
+            [title]="tableTitle"
+            [align]="tableAlign"
+            [columns]="columns"
+            [items]="beneficiaries"
+            [pagination]="pagination!"
+
+            (handleLimit)="handleLimit($event);"
+            (handlePage)="handlePage($event);"
+            (handleAction)="handleAction($event);"
+        ></app-table>
+    </ng-container>
+</div>

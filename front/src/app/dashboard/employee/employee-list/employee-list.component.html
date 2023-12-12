@@ -1,0 +1,109 @@
+<div class="employee-list fadeInAnimation">
+    <div class="employee-list-add-btn">
+        <app-button
+            routerLink="/dashboard/employee/create"
+            [elevation]="true"
+            color="primary"
+            [fit]="true"
+
+            text="Agregar Empleado"
+            icon="fa-solid fa-circle-plus"
+            size="15"
+        ></app-button>
+    </div>
+    <ng-container>
+        <app-table
+            [elevation]="true"
+            color="white"
+
+            [title]="tableTitle"
+            [align]="tableAlign"
+            [columns]="columns"
+            [items]="employees"
+            [pagination]="pagination!"
+
+            (handleLimit)="handleLimit($event);"
+            (handlePage)="handlePage($event);"
+            (handleAction)="handleAction($event);"
+        ></app-table>
+    </ng-container>
+</div>
+
+<ng-container>
+    <div class="employee-list-view fadeInAnimation" *ngIf="employee">
+        <div class="employee-description">
+            <h2>
+                Numero de empleado: {{ employee.employee_number }}
+                <i (click)="closeModal();" class="fa-solid fa-circle-xmark"></i>
+            </h2>
+            <ul class="employee-description-list">
+                <h4>Datos Generales</h4>
+                <li>
+                    Folio: <span>{{ employee._id }}</span>
+                </li>
+                <li>
+                    Numero de Empleado: <span>{{ employee.employee_number }}</span>
+                </li>
+                <li>
+                    Nombre: <span>{{ employee.name }}</span>
+                </li>
+                <li>
+                    Apellido: <span>{{ employee.surname }}</span>
+                </li>
+                <li>
+                    Fecha de Nacimiento: <span>{{ employee.birthdate }}</span>
+                </li>
+                <li>
+                    CURP: <span>{{ employee.curp }}</span>
+                </li>
+                <li>
+                    SSN: <span>{{ employee.ssn }}</span>
+                </li>
+                <li>
+                    Telefono: <span>{{ employee.phone }}</span>
+                </li>
+                <li>
+                    Nacionalidad: <span>{{ employee.nationality }}</span>
+                </li>
+            </ul>
+
+            <ng-container *ngIf="employee.beneficiaries.length > 0; else elseBlock;">
+                <ul class="beneficiaries-container">
+                    <ul class="employee-description-list" *ngFor="let beneficiary of employee.beneficiaries">
+                        <h4>Beneficiario: {{ beneficiary.name }} {{ beneficiary.surname }}</h4>
+                        <li>
+                            Folio: <span>{{ beneficiary._id }}</span>
+                        </li>
+                        <li>
+                            Nombre: <span>{{ beneficiary.name }}</span>
+                        </li>
+                        <li>
+                            Apellido: <span>{{ beneficiary.surname }}</span>
+                        </li>
+                        <li>
+                            Fecha de Nacimiento: <span>{{ beneficiary.birthdate }}</span>
+                        </li>
+                        <li>
+                            CURP: <span>{{ beneficiary.curp }}</span>
+                        </li>
+                        <li>
+                            SSN: <span>{{ beneficiary.ssn }}</span>
+                        </li>
+                        <li>
+                            Telefono: <span>{{ beneficiary.phone }}</span>
+                        </li>
+                        <li>
+                            Nacionalidad: <span>{{ beneficiary.nationality }}</span>
+                        </li>
+                        <li>
+                            Porcentaje: <span>{{ beneficiary.percentage }}%</span>
+                        </li>
+                    </ul>
+                </ul>
+            </ng-container>
+            <ng-template #elseBlock>
+                <h3 class="no-beneficiaries">El empleado no ha dado de alta Beneficiarios.</h3>
+            </ng-template>
+        </div>
+    </div>
+</ng-container>

@@ -1,0 +1,95 @@
+@import '../../../../app.component.scss';
+
+.app-button {
+    padding: 10px 20px;
+    letter-spacing: 1px;
+    border: 1px solid $border-light;
+    border-radius: $border-radius;
+    overflow: hidden;
+    transition: $transition;
+    user-select: none;
+    cursor: pointer;
+    outline: none;
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    white-space: nowrap;
+
+    &:active {
+        transform: $scale;
+    }
+}
+
+.app-button-primary {
+    background-color: $purple;
+    color: $font-white;
+}
+
+.app-button-dark {
+    background-color: $dark;
+    color: $font-white;
+}
+
+.app-button-white {
+    background-color: $white;
+    color: $font-dark;
+}
+
+.app-button-shadow {
+    box-shadow: $box-shadow;
+    border: 0;
+}
+
+.app-button-fit {
+    width: 100%;
+    height: 100%;
+}
+
+.app-button-only-icon {
+    padding: 9px 10px 10px;
+
+    i {
+        margin: 0;
+        padding: 0;
+        margin-left: 1px;
+    }
+}
+
+.app-button-text-icon {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    i {
+        margin-left: 5px;
+    }
+}
+
+.app-button-disabled {
+    background-color: $gray;
+}
+
+[anim="ripple"] {
+    position: relative;
+    overflow: hidden;
+  
+    &:before {
+        content: '';
+        position:absolute;
+        display: block;
+        background: $ripple-background;
+        border-radius: 50%;
+        pointer-events: none; 
+        
+        //  position and size 
+        top: calc(var(--y) * 1px);
+        left: calc(var(--x) * 1px);
+        width:  calc(var(--d) * 1px);
+        height: calc(var(--d) * 1px);
+  
+        //  animated properties
+        opacity: calc(var(--o, 1) * var(--ripple-opacity, 0.3));                
+        transition: calc(var(--t, 0) * var(--ripple-duration, 600ms)) var(--ripple-easing,linear);   
+        transform: translate(-50%, -50%) scale(var(--s, 1));
+        transform-origin: center;
+    }
+  }

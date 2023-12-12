@@ -1,0 +1,7 @@
+back/node_modules/
+back/dist/
+back/mongo/
+
+front/node_modules/
+front/.angular/
+front/.vscode/

@@ -1,0 +1,173 @@
+@import '../../../../app.component.scss';
+
+.app-input-container {
+    width: 200px;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    &:has( > .app-input-show-password ) {
+        .app-input {
+            padding-right: 56px;
+        }
+    }   
+
+    .app-input {
+        width: 100%;
+        padding: 10px 33px 9.5px 10px;
+        border: 0;
+        border: 1px solid $border-light;
+        background-color: $white;
+        color: $font-dark;
+        border-radius: $border-radius;
+        outline: none;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: .2px;
+        transition: $transition;
+
+        &::placeholder {
+            color: $font-gray;
+            transition: $transition;
+        }
+
+        &:focus {
+            border-color: $purple;
+        }
+
+        &[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+    }
+
+    .app-input-icon {
+        position: absolute;
+        right: 0;
+        width: 33px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+            color: $purple;
+            transition: $transition;
+        }
+    }
+
+    .app-input-show-password {
+        position: absolute;
+        right: 0;
+        width: 66px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        .app-input:nth-of-type(1) {
+            background-color: red !important;
+        }
+
+        i {
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            margin-left: -1px;
+            color: $purple;
+            position: absolute;
+            right: 10px;
+            transition: $transition;
+
+            &:nth-child(2) {
+                right: 28px;
+            }
+        }
+    }
+}
+
+.app-input-elevation .app-input {
+    border: 0;
+    box-shadow: $box-shadow;
+    transition: $transition;
+
+    &:focus::placeholder {
+        color: $purple;
+        transition: $transition;
+    }
+}
+
+.app-input-fit {
+    width: 100%;
+    min-width: 0px;
+    height: 100%;
+    display: flex;
+
+    .app-input {
+        width: 100%;
+        height: 100%;
+        padding-top: 0;
+        padding-bottom: 0;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+}
+
+.app-input-dark .app-input {
+    background-color: $dark;
+    color: $font-white;
+    border: 0;
+
+    &:focus::placeholder {
+        color: $purple;
+    }
+}
+
+.app-input-white .app-input {
+    background-color: $white;
+    color: $font-dark;
+}
+
+.app-input-primary {
+    .app-input {
+        background-color: $purple;
+        color: $font-white;
+    
+        &::placeholder {
+            color: $font-white-light;
+        }
+    }
+    
+    .app-input-icon i {
+        color: $font-white;
+    }
+
+    .app-input-show-password i {
+        color: $font-white;
+    }
+}
+
+//** Handling Error Colors **//
+.app-input-icon-invalid {
+    color: $danger !important;
+}
+
+.app-input-icon-valid {
+    color: $green !important;
+}
+
+.app-input-show-password-invalid i {
+    color: $danger !important;
+}
+
+.app-input-show-password-valid i {
+    color: $green !important;
+}
+
+.app-input-invalid-field-custom-icon {
+    color: $danger !important;
+}
+
+
