@@ -35,4 +35,4 @@
 
 # Tecnologias utilizadas #
 - Backend: NestJS | MongoDB | Mongoose
-- Frontend: Angular v16 | Lazy Loading | Atomic Design | Standalone Components (unos cuantos) | SCSS
+- Frontend: Angular v16 | NgRx | Lazy Loading | Atomic Design | Standalone Components (unos cuantos) | SCSS
